@@ -18,6 +18,8 @@ Or CDN: https://unpkg.com/mobx-react (namespace: `mobxReact`)
 
 ```javascript
 import {observer} from 'mobx-react';
+// - or, for React Native: -
+import {observer} from 'mobx-react/native';
 // - or, for custom renderers without DOM: -
 import {observer} from 'mobx-react/custom';
 ```
@@ -447,6 +449,18 @@ Warning: setState(...): Cannot update during an existing state transition (such 
 
 Usually this means that (another) component is trying to modify observables used by this components in their `constructor` or `getInitialState` methods.
 This violates the React Lifecycle, `componentWillMount` should be used instead if state needs to be modified before mounting.
+
+**I'm trying to use MobX in React Native but it throws `Cannot find module 'react-dom' from 'index.js`**
+
+Make sure you're importing `observer` / `Inject` from the right place:
+
+```
+// this will work only for React DOM:
+import {observer} from 'mobx-react';
+
+// this will work in React Native:
+import {observer} from 'mobx-react/native';
+```
 
 ## Internal DevTools Api
 
